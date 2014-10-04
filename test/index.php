@@ -13,11 +13,11 @@ $verbose = 1;
 
 //testing credentials
 $test = array(
-	"key" => "00i0nm0dk1gifr9xmcveeh9c5ts1fsio",
-	"secret" => "00i0nm0dk1euwdbocxy6wdebrrstrtj8",
-	"email" => "comalv@gmail.com",
-	"password" => "comalv@gmail.com",
-	"token" => "00iansbjfkjf",
+	"key" => "",
+	"secret" => "",
+	"email" => "",
+	"password" => "",
+	"token" => "",
 	"date" => "".date('c')		//ISO 8601 current datetime
 );
 
