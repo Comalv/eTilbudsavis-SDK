@@ -1,81 +1,29 @@
 Engineer Assignment
 ===================
 
-Implement a working SDK based on the `IClient` interface.
+Developer: Filippo Malvisi
+E-Mail: comalv@gmail.com
 
-The actual `IClient` interface is found on one of the `language/<name>` branches.
+Tools Used:
+OS: Windows 7 SP1 x64
+Editor: Notepad++ v5.9.6.1
+Localhost webserver: EasyPHP DevServer v14.1 (Apache v2.4.7, PHP v5.5.8)
+Web Browser: Google Chrome v37.0.2062.124 m
 
+Functions implemented:
+Required: initialization(), signIn(), signOut(), destroy()
+Optional: getCatalogList(), getCatalog()
 
-The goal is to produce well-written code that you are proud to commit.
-Remember to comment (but not over-comment) your code.
-The comments should be for other developers, just as in an real-life scenario.
-
-If you need to comment on your solution to the assignment (by all means do),
-please keep that in a seperate document.
-We prefer markdown or other plain-text formats, but a PDF is also fine.
-Note that Microsoft Word documents (or other office suite tools) will not be read.
-Export to PDF, if you have to use such a tool.
-
-
-
-Getting Started
------------------------
-
-Simply clone, or fork, this repository, and commit your work directly to it.
-When it is time to hand in the solution, see the "Hand In" section.
+Interface changes:
+initialization: removed '$secret' as it does not seem to be used in initialization (as it seems to be only useful with a token, as explained in notes.pdf), added '$v1' for API v1 authentication
+destroy: changed to '$token' and '$secret' as they are the only things required to destroy the session
+getCatalogList: forced '$options' to be an array, added '$token' and '$secret' because they are required to perform the request but they should be separated from the rest as they are session/user related and not request related (ie: they have nothing to do with catalogs)
+getCatalog: same as getCatalogList
 
 
+Testing Page Usage:
+access /test/index.php for testing. Be sure to fill in the default credentials before starting and if you can edit the catalog-related testing info. For more information (also regarding '$verbose') check notes.pdf. A successful test should not return any errors.
 
-What we are looking for
------------------------
+A quick note on token renewal: As I also state in notes.pdf I feel like there should be a function somewhere that checks for an exesting session, provided you have a token and tries to use that. Also this function should be responsible for checking the expiration date on the current token and renewing it if it is close to expiring. Since there is no interface for it (and it should definitely be a public function) I did not implement one, but it should be there for a complete SDK. I did not want to include it in initalization() because I feel its name would become misleading.
 
-- Maintainability
-- Good structure (code as well as files/folders)
-- Well-commented public interface
-
-If you choose performance over readability for certain parts, please write a few paragraphs
-on why you choose to optimize that part of your code (again, not in the comments).
-
-Also, feel free to change the folder structure of your solution.
-
-
-
-Requirements
------------------------
-
-You must implement the methods `initialize`, `signIn`, `signOut` and `destroy`.
-The remaining methods are optional, but we would like at least one of them
-to be functional.
-Code comments is left out on the remaining functions on purpose. It is up to you
-to design the best suited return values.
-
-You can change the `IClient` interface if you write a few lines about why you changed it.
-
-
-
-Extra Credits
------------------------
-
-- Unit tests is a major plus.
-- Code coverage report.
-- Few as possible external dependencies.
-
-
-
-Hand In
------------------------
-
-If you push your code to github or bitbucket, you can simply send us a link to the repo.
-
-If you prefer to keep the implementation private, zip the entire project directory (.git folder included!)
-and send us the archive.
-Note that we only accept `.zip` and `.tar.gz` archives.
-
-
-
-Final Notes
------------------------
-
-- Don't rush it. We would rather see an incomplete good implementation, than a complete bad one.
-- Consider that you're implementing an SDK for other developers to use; your design decisions should reflect this.
-
+For everything else there is notes.pdf and for everything that might not be covered there, you can reach me by email.
